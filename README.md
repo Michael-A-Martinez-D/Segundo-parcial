@@ -30,7 +30,7 @@ Matrícula: 2025-1410
 | SW1 | Vlan1 | 14.10.10.2/28 |
 | Servidor NPS | 14.10.10.5 | 14.10.10.5/28 |
 | Máquina de hardening | 14.10.10.6 | 14.10.10.6/28 |
-| Servidor Zabbix |  | 14.10.10.3 |
+| Servidor Zabbix | 14.10.10.3 |
 | PC de usuarios | DHCP |
 
 ---
