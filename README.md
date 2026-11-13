@@ -85,7 +85,8 @@ python3 auditor.py --modo apply --salida salida_despues
 
 Direccionamiento según la matrícula y hostname en todos los equipos.
 
-[COMPLETAR: agregar capturas de los pings entre equipos y de `show ip interface brief`]
+![Demostración conectividad](imagenes/conectividad_red.png)
+
 
 ---
 
