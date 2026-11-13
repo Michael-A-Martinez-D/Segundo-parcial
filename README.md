@@ -24,13 +24,13 @@ El objetivo de esta práctica es configurar una red con un router y un switch Ci
 
 Matrícula: 2025-1410
 
-| Dispositivo | IP |
-|-------------|----|
+| Dispositivo | Interfaz |
+|-------------|----------|
 | R1 | e0/0 | 14.10.10.1/28 |
 | SW1 | Vlan1 | 14.10.10.2/28 |
-| Servidor NPS | 14.10.10.5 | 
-| Máquina de hardening | eth1 | 
-| Servidor Zabbix | 14.10.10.3 |
+| Servidor NPS | 14.10.10.5 | 14.10.10.5/28 |
+| Máquina de hardening | 14.10.10.6 | 14.10.10.6/28 |
+| Servidor Zabbix |  | 14.10.10.3 |
 | PC de usuarios | DHCP |
 
 ---
