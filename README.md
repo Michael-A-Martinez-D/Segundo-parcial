@@ -94,7 +94,7 @@ Direccionamiento según la matrícula y hostname en todos los equipos.
 
 Se configuró port-security en los puertos de acceso del switch con un máximo de 2 MAC por puerto y acción de violación `shutdown`. Se demuestra una violación al conectar una tercera MAC.
 
-![Prueba de port-security](imagenes/port_secrurity_prueba.png)
+![Prueba de port-security](imagenes/port_securrity_prueba.png)
 
 ---
 
