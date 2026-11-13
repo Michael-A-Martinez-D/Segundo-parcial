@@ -1,0 +1,164 @@
+Current configuration : 2056 bytes
+!
+! Last configuration change at 14:24:07 UTC Fri Nov 13 2026 by usuario_radius
+!
+version 15.7
+service timestamps debug datetime msec
+service timestamps log datetime msec
+service password-encryption
+!
+hostname R1
+!
+boot-start-marker
+boot-end-marker
+!
+!
+logging buffered 16384
+logging console informational
+!
+aaa new-model
+!
+!
+aaa group server radius GRP_NPS
+ server name NPS
+ ip radius source-interface Ethernet0/0
+!
+aaa authentication login default local
+aaa authentication login CONSOLA_RADIUS group GRP_NPS local
+aaa authorization console
+aaa authorization exec default local
+aaa authorization exec CONSOLA_RADIUS group GRP_NPS local
+!
+!
+!
+!
+!
+aaa session-id common
+!
+!
+!
+mmi polling-interval 60
+no mmi auto-configure
+no mmi pvc
+mmi snmp-timeout 180
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+
+
+!
+ip dhcp excluded-address 14.10.10.1
+ip dhcp excluded-address 14.10.10.1 14.10.10.2
+ip dhcp excluded-address 14.10.10.5 14.10.10.6
+!
+ip dhcp pool LAN
+ network 14.10.10.0 255.255.255.240
+ default-router 14.10.10.1
+!
+!
+!
+no ip domain lookup
+ip domain name lab.local
+ip cef
+login on-failure log
+login on-success log
+no ipv6 cef
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+!
+!
+!
+!
+username admin privilege 15 secret 5 $1$c5NA$Lv.LRpg4J0EA/GWvwDwyO0
+!
+redundancy
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface Ethernet0/0
+ description Hacia Switch (LAN)
+ ip address 14.10.10.1 255.255.255.240
+ duplex auto
+!
+interface Ethernet0/1
+ no ip address
+ shutdown
+ duplex auto
+!
+interface Ethernet0/2
+ no ip address
+ shutdown
+ duplex auto
+!
+interface Ethernet0/3
+ no ip address
+ shutdown
+ duplex auto
+!
+ip forward-protocol nd
+!
+!
+no ip http server
+no ip http secure-server
+ip ssh version 2
+!
+ipv6 ioam timestamp
+!
+!
+!
+!
+radius server NPS
+ address ipv4 14.10.10.5 auth-port 1812 acct-port 1813
+ key 7 1526041506253F757F
+!
+!
+control-plane
+!
+!
+!
+!
+!
+!
+!
+!
+line con 0
+ authorization exec CONSOLA_RADIUS
+ logging synchronous
+ login authentication CONSOLA_RADIUS
+line aux 0
+ authorization exec CONSOLA_RADIUS
+ login authentication CONSOLA_RADIUS
+line vty 0 4
+ transport input ssh
+!
+!
+end

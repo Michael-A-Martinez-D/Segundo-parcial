@@ -1,0 +1,73 @@
+en
+conf t
+hostname SW1
+no ip domain-lookup
+
+username auditor privilege 15 secret Toybot17
+
+interface Gi0/0
+description Hacia Router
+no shutdown
+
+interface Gi0/1
+description Hacia Zabbix
+no shutdown
+
+interf g0/2
+description Hacia PC Usuario 1
+no shutdown
+
+interf g0/3
+description Hacia Server RADIUS
+no shutdown
+
+interf g1/0
+description Hacia Hardening
+no shutdown
+
+interf g1/1
+description Hacia PC Usuario 2
+no shutdown
+exit
+
+interface Vlan1
+ ip address 14.10.10.2 255.255.255.240
+ no shutdown
+ exit
+ip default-gateway 14.10.10.1
+
+
+ip domain-name lab.local
+crypto key generate rsa modulus 2048
+ip ssh version 2
+service password-encryption
+username admin privilege 15 secret Toybot17
+line vty 0 4
+ login local
+ transport input ssh
+exit
+
+snmp-server community ZabbixRO RO
+snmp-server location Laboratorio
+snmp-server contact admin@lab.local
+
+
+
+interface g0/2
+ switchport mode access
+ switchport port-security
+ switchport port-security maximum 2
+ switchport port-security violation shutdown
+ switchport port-security mac-address sticky
+exit
+
+interface g1/1
+ switchport mode access
+ switchport port-security
+ switchport port-security maximum 2
+ switchport port-security violation shutdown
+ switchport port-security mac-address sticky
+exit
+
+
+
